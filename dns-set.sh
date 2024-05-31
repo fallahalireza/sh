@@ -1,8 +1,8 @@
 #!/bin/bash
 
-nohup sudo sed -i '/^#DNS=/d' /etc/systemd/resolved.conf >/dev/null 2>&1 &
-nohup sudo sed -i '/^DNS=/d' /etc/systemd/resolved.conf >/dev/null 2>&1 &
-nohup sudo sed -i '$ a DNS=1.1.1.1 1.0.0.1' /etc/systemd/resolved.conf >/dev/null 2>&1 &
+sudo sed -i '/^#DNS=/d' /etc/systemd/resolved.conf
+sudo sed -i '/^DNS=/d' /etc/systemd/resolved.conf
+sudo sed -i '$ a DNS=1.1.1.1 1.0.0.1' /etc/systemd/resolved.conf
 sudo systemctl restart systemd-resolved
 
 name='dns-set'
