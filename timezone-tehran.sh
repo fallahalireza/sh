@@ -9,4 +9,6 @@ sudo timedatectl set-timezone Asia/Tehran
 # به‌روزرسانی ساعت از طریق اینترنت
 sudo timedatectl set-ntp true
 
-echo "dns-set success $(date "+%Y-%m-%d %H:%M:%S")" >> /var/log/royasite.log
+name='timezone-tehran'
+sudo sed -i "/^$name/d" /var/log/royasite.log
+echo "$name success $(date "+%Y-%m-%d %H:%M:%S")" >> /var/log/royasite.log
