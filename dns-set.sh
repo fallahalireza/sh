@@ -19,4 +19,3 @@ fi
 log_name='dns-set'
 sudo sed -i "/^$log_name/d" /var/log/royasite.log
 echo "$log_name success $(date "+%Y-%m-%d %H:%M:%S")" >> /var/log/royasite.log
-
