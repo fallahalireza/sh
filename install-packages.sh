@@ -1,7 +1,21 @@
 #!/bin/bash
 
-sudo apt install wget screen tar -y
-
 log_name='install-packages'
-sudo sed -i "/^$log_name/d" /var/log/royasite.log
-echo "$log_name success $(date "+%Y-%m-%d %H:%M:%S")" >> /var/log/royasite.log
+log_file='/var/log/royasite.log'
+
+log_success() {
+    sudo sed -i "/^$log_name/d" "$log_file"
+    echo "$log_name success $(date "+%Y-%m-%d %H:%M:%S")" | sudo tee -a "$log_file"
+}
+
+log_error() {
+    local message="$1"
+    echo "$log_name error ($message) $(date "+%Y-%m-%d %H:%M:%S")" | sudo tee -a "$log_file"
+}
+
+if sudo apt install wget screen tar -y; then
+    log_success
+else
+    log_error "sudo apt install wget screen tar -y"
+fi
+
